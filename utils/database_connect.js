@@ -1,8 +1,9 @@
-const mongoose = require('mongoose');
-const {databaseURL} = require('../config');
+const mongoose = require("mongoose");
+const { databaseURL } = require("../config");
 
-mongoose.connect(databaseURL).then(() => {
-	console.log("Connected Successfully!");
-}).catch((err) => {
-	console.log("Error! Could not connect " + err);
-});
+mongoose.connect(databaseURL, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+})
+.then(() => console.log("✅ MongoDB connected successfully"))
+.catch((err) => console.error("❌ MongoDB connection error:", err));

@@ -108,7 +108,7 @@
 
 		axios(config)
             .then((res) => {
-				addFlash('success', 'Check your email to validate your account!');
+				addFlash('success', 'Registration Successful! Redirecting to Login Page...');
 				setTimeout(() => {
 					window.location = '/auth/login';
                 }, 5000);

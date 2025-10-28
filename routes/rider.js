@@ -90,7 +90,8 @@ router.get('/:id/edit', isCurrentUser, async (req, res) => {
 
 router.patch('/:id',
 	isCurrentUser,
-	uploadRiderFiles.fields([{name: "profile-pic"}, {name: "covid-cert"}]),
+	uploadRiderFiles.fields([{ name: 'profile-pic', maxCount: 1 },
+  { name: 'identity-proof', maxCount: 1 },]),
 	validateRiderDetails,
 	async (req, res) => {
 	try {
@@ -100,7 +101,8 @@ router.patch('/:id',
 		const user = await riders.findById({_id: id});
 
 		const imageLink = req.files['profile-pic'] ? req.files['profile-pic'][0].path : user.profilePic;
-		const covidCertLink = req.files['covid-cert'] ? req.files['covid-cert'][0].path : user.covidCert;
+		const identityProofLink = req.files['identity-proof'] ? req.files['identity-proof'][0].path : user.identityProof;
+		const covidCertLink = identityProofLink;		
 
 		const updateEmContact = {
 			name: emContactName,
@@ -124,6 +126,49 @@ router.patch('/:id',
 		res.render('error', {code: 500, error: 'Internal server error'})
 	}
 });
+
+router.post('/:id', 
+	isCurrentUser,
+	uploadRiderFiles.fields([
+		{ name: 'profile-pic', maxCount: 1 },
+		{ name: 'identity-proof', maxCount: 1 },
+	]),
+	async (req, res) => {
+	try {
+		const { id } = req.params;
+		const { email, phone, gender, dob, occupation, emContactName, emContactRelation, emContactPhone } = req.body;
+
+		const user = await riders.findById(id);
+
+		const imageLink = req.files['profile-pic'] ? req.files['profile-pic'][0].path : user.profilePic;
+		const identityProofLink = req.files['identity-proof'] ? req.files['identity-proof'][0].path : user.identityProof;
+
+		const updateEmContact = {
+			name: emContactName,
+			relation: emContactRelation,
+			phone: emContactPhone
+		};
+
+		await riders.findOneAndUpdate({ _id: id }, {
+			phone,
+			gender,
+			dob,
+			occupation,
+			profilePic: imageLink,
+			identityProof: identityProofLink,
+			emergencyContact: updateEmContact
+		});
+
+		await logins.findOneAndUpdate({ username: email }, { isFilled: true });
+
+		console.log('✅ Rider details updated for', email);
+		res.redirect(`/rider/${id}/dashboard`);
+	} catch (e) {
+		console.error(e);
+		res.status(500).render('error', { code: 500, error: 'Internal server error' });
+	}
+});
+
 
 router.delete('/:id', isRoleAdmin, async (req, res) => {
 	try {

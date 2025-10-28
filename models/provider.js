@@ -6,7 +6,7 @@ const schema = new mongoose.Schema({
 	phone: Number,
 	email: String,
 	dob: Date,
-	gst: String,
+	//.: String,
 	properties: [{
 		type: mongoose.Schema.Types.ObjectId,
 		ref: 'Property'

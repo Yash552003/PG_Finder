@@ -57,7 +57,8 @@
                         </div>
                         <input id="dob" name="dob" type="date" min="1980-01-01"
                                max="<%= new Date(new Date().getFullYear() - 18, new Date().getMonth(), new Date().getDate()).toLocaleDateString('fr-ca') %>"
-                               class="form-control" required="required" value="<%= userInfo.dob.toLocaleDateString('fr-ca') %>">
+                               class="form-control" required="required" value="<%= userInfo.dob ? userInfo.dob.toISOString().split('T')[0] : '' %>"
+>
                     </div>
                 </div>
             </div>

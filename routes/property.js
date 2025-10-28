@@ -55,27 +55,36 @@ router.get('/search', async (req, res) => {
 router.get('/', async (req, res) => {
 	try {
 		let {
-			searchType, // determining what type of search it is. values: ['zip', 'text']
-			searchText, // text entered for searching
-			gender, // what gender are we looking for
-			rating, // what is the minimum rating
-			rate, // what is the maximum rate
-			skip, // how many results to skip
-			resCount // how many results to return
+			searchType,
+			searchText,
+			gender,
+			rating,
+			rate,
+			skip,
+			resCount
 		} = req.query;
-
-		if (!searchType || !searchText)
-			return res.render('error', {error: 'Invalid search input', code: 403});
 
 		let filter = {};
 
+		// If no search input provided, show all properties
+		if (!searchType || !searchText) {
+			const allProperties = await properties.find({}).limit(20);
+			return res.render('search-result', {
+				results: allProperties,
+				isFirst: true,
+				isLast: allProperties.length < 20,
+				query: {},
+			});
+		}
+
+		// Apply filters when searching
 		if (gender) filter.type = gender;
 		if (rating) filter.rating = { $gte: rating };
 		if (rate) filter.rate = { $lte: Number(rate) };
 		if (searchType === 'zip')
 			filter['address.zipcode'] = searchText;
 		else
-			filter['$text'] = {$search: searchText};
+			filter['$text'] = { $search: searchText };
 
 		if (!resCount) {
 			req.query.resCount = 10;
@@ -91,27 +100,26 @@ router.get('/', async (req, res) => {
 
 		let result;
 		if (searchType === 'zip')
-			result = await properties.find(filter).sort({name: 1}).skip(skip).limit(resCount);
+			result = await properties.find(filter).sort({ name: 1 }).skip(skip).limit(resCount);
 		else
 			result = await properties.find(filter, {
-				score: {$meta: "textScore"}
-			}).sort({score:{$meta:"textScore"}, name: 1}).skip(skip).limit(resCount);
+				score: { $meta: "textScore" }
+			}).sort({ score: { $meta: "textScore" }, name: 1 }).skip(skip).limit(resCount);
 
+		let isLast = result.length < resCount;
 
-		let isLast = false;
-		if (result.length < resCount)
-			isLast = true;
-
-		return res.render('search-result',{
+		return res.render('search-result', {
 			results: result,
-			isFirst: isFirst,
-			isLast: isLast,
+			isFirst,
+			isLast,
 			query: req.query,
 		});
 	} catch (e) {
-		res.render('error', {code: 500, error: 'Internal server error'})
+		console.error(e);
+		res.render('error', { code: 500, error: 'Internal server error' });
 	}
-})
+});
+
 
 router.get('/new', isLoggedIn, isRoleProvider, (req, res) => {
 	try {
