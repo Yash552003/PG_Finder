@@ -58,14 +58,18 @@ function isRoleAdminOrProvider (req, res, next) {
 	next();
 }
 
-function isLoggedIn (req, res, next) {
-	req.session.redirectUrl = req.originalUrl;
+function isLoggedIn(req, res, next) {
+  // if passport session is present, proceed
+  if (req.isAuthenticated && req.isAuthenticated()) {
+    return next();
+  }
 
-	if (!req.isAuthenticated())
-		return res.redirect('/auth/login');
-
-	next();
+  // store where to redirect after login
+  req.session.redirectUrl = req.originalUrl;
+  return res.redirect('/auth/login');
 }
+
+
 
 function isAdminLoggedIn (req, res, next) {
 	if (!req.isAuthenticated())

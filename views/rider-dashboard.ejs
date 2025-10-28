@@ -62,7 +62,9 @@
                         <p class="mb-0">DOB</p>
                     </div>
                     <div class="col-sm-9">
-                        <p class="text-muted mb-0"><%= userInfo.dob.toLocaleDateString('fr') %></p>
+                        <p class="text-muted mb-0">
+  <%= userInfo.dob ? userInfo.dob.toLocaleDateString('fr') : 'N/A' %>
+</p>
                     </div>
                 </div>
                 <hr>

@@ -272,10 +272,7 @@
                 <div class="col-lg-9 text-center text-lg-start " style="backdrop-filter: blur(10px)">
                     <h3 class="">Are you a Property Owner!</h3>
                     <p>Are you a property owner looking to rent out your PG or hostel? List your property on PG Finder today and reach a wider audience of potential tenants. With our user-friendly platform and verified listings, you can be assured that your property is in safe hands. Start listing your property today and see the bookings roll in!</p>
-                </div>
-                <div class="btn-holder col-lg-3 d-flex align-items-center justify-content-center">
-                    <a role='button' class="btn btn-primary" href="/auth/registration">Create Account!</a>
-                </div>
+
             </div>
         </div>
     </section>
@@ -283,40 +280,66 @@
     <section id="team" class="d-flex flex-column align-items-center bg-dark-subtle p-0 m-0" style="min-height: 80vh; font-family: 'Poppins', sans-serif">
         <h3 class="display-3 text-center fst-italic fw-bold" style="margin-top: 2rem">Team</h3>
         <div class="container d-flex justify-content-evenly align-items-center h-100 flex-column flex-md-row row-gap-5" style="min-height: 60vh">
-            <div class="col-md-4" style="font-family: 'Poppins', sans-serif">
-                <div class="card profile-card-3 shadow-lg" data-aos="flip-left">
-                    <div class="background-block">
-                        <img src="images/proback1.jpg" alt="profile-sample1" class="background"/>
-                    </div>
-                    <div class="profile-thumb-block">
-                        <img src="images/priyanshi.jpg" alt="profile-image" class="profile"/>
-                    </div>
-                    <div class="card-content">
-                        <h2>Priyanshi<small>Developer</small></h2>
-                        <div class="icon-block">
-                            <a href="https://www.linkedin.com/in/pri-mittal2409/" target="_blank"><i class="fa fa-linkedin"></i></a>
-                            <a href="https://github.com/priyanshi-mittal" target="_blank"><i class="fa fa-github"></i></a>
-                        </div>
-                    </div>
+            <div class="container d-flex justify-content-center align-items-center py-5" style="min-height: 80vh;">
+    <div class="col-md-4" style="font-family: 'Poppins', sans-serif" data-aos="flip-right">
+        <div class="card profile-card-3 shadow-lg">
+            <div class="background-block">
+                <img src="images/proback2.jpg" alt="Profile Background" class="background img-fluid" />
+            </div>
+            <div class="profile-thumb-block">
+                <img src="images/kgce pic.jpg" alt="KGCE Logo" class="profile img-fluid" />
+            </div>
+            <div class="card-content text-center">
+                <h2>Mini Project<br><small class="text-muted">For Sem V - KGCE</small></h2>
+                <div class="icon-block mt-3">
+                    <a href="https://www.linkedin.com" target="_blank" class="text-decoration-none me-3 text-primary">
+                        <i class="fab fa-linkedin fa-lg"></i>
+                    </a>
+                    <a href="https://github.com" target="_blank" class="text-decoration-none text-dark">
+                        <i class="fab fa-github fa-lg"></i>
+                    </a>
                 </div>
             </div>
-            <div class="col-md-4" style="font-family: 'Poppins', sans-serif">
-                <div class="card profile-card-3 shadow-lg" data-aos="flip-right">
-                    <div class="background-block">
-                        <img src="images/proback2.jpg" alt="profile-sample1" class="background"/>
-                    </div>
-                    <div class="profile-thumb-block">
-                        <img src="images/aryan.jpg" alt="profile-image" class="profile"/>
-                    </div>
-                    <div class="card-content">
-                        <h2>Aryan Upadhyay<small>Developer</small></h2>
-                        <div class="icon-block">
-                            <a href="https://www.linkedin.com/in/aryan-upa/" target="_blank"><i class="fa fa-linkedin"></i></a>
-                            <a href="https://github.com/aryan-upa" target="_blank"><i class="fa fa-github"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.profile-card-3 {
+    position: relative;
+    overflow: hidden;
+    border-radius: 15px;
+    text-align: center;
+    transition: transform 0.4s ease;
+}
+.profile-card-3:hover {
+    transform: scale(1.05);
+}
+.background-block img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+}
+.profile-thumb-block {
+    position: absolute;
+    top: 70px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.profile-thumb-block img {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 4px solid #fff;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+.card-content {
+    margin-top: 90px;
+    padding: 20px;
+}
+</style>
+
         </div>
     </section>
 

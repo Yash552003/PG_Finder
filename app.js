@@ -14,11 +14,13 @@ const cron = require('node-cron');
 
 /* SERVER CONFIGURATIONS */
 app.use(express.urlencoded({extended: true}));
+app.use(express.json());
 app.use(cookieParser());
 app.use(methodOverride('_method'));
 app.set('view engine', "ejs");
 app.engine("ejs", engine);
 app.use(express.static(path.join(__dirname, 'public')));
+
 
 
 /* SESSION STORE */
@@ -32,7 +34,7 @@ const store = new MongoDBStore({
 app.use(session({
     secret: sessionSecret,
     resave: false,
-    saveUninitialized: true,
+    saveUninitialized: false,
     cookie: {
         httpOnly: true,
         maxAge: 1000 * 60 * 60 * 24 * 7, // 1 week,
@@ -44,14 +46,16 @@ app.use(session({
 
 /* PASSPORT SETUP */
 const passport = require('passport');
-const LocalStrategy = require('passport-local');
+const LocalStrategy = require('passport-local').Strategy;
 
-passport.use('passport-local', new LocalStrategy({
+passport.use(new LocalStrategy({
     usernameField: 'email',
     passwordField: 'pass'
 }, logins.authenticate()));
-app.use(passport.initialize({}));
-app.use(passport.session({}));
+
+app.use(passport.initialize());
+app.use(passport.session());
+
 passport.serializeUser(logins.serializeUser());
 passport.deserializeUser(logins.deserializeUser());
 

@@ -15,7 +15,8 @@
         </h1>
     </div>
 
-    <form method="post" id="form" class="col-lg-5 col-md-8 col-10 card shadow-lg pt-3 validation-required align-self-center mx-auto" novalidate>
+    <form method="post" id="form" class="col-lg-5 col-md-8 col-10 card shadow-lg pt-3 validation-required align-self-center mx-auto" novalidate><form method="post" action="/auth/login" id="form" class="col-lg-5 col-md-8 col-10 card shadow-lg pt-3 validation-required align-self-center mx-auto" novalidate>
+        <h2 class="text-center mb-4">User Login</h2>    
         <% if (attempt && attempt === 'failed') { %>
             <p class="bg-danger text-white text-center h4 fw-light py-2">Invalid Email ID or Password!</p>
         <% } %>

@@ -1,15 +1,13 @@
-const mongoose = require("mongoose");
-const passportLocalMongoose = require("passport-local-mongoose");
+const mongoose = require('mongoose');
+const passportLocalMongoose = require('passport-local-mongoose');
 
-const schema = new mongoose.Schema({
-	role: String,
-	name: String,
-	isFilled: {
-		type: Boolean,
-		default: false
-	}
+const loginSchema = new mongoose.Schema({
+  username: { type: String, required: true, unique: true },
+  name: { type: String, required: true },
+  role: { type: String, enum: ['rider', 'provider', 'admin'], required: true },
+  isFilled: { type: Boolean, default: false }
 });
 
-schema.plugin(passportLocalMongoose);
-const model = mongoose.model('Login', schema);
-module.exports = model;
+loginSchema.plugin(passportLocalMongoose, { usernameField: 'username' });
+
+module.exports = mongoose.model('logins', loginSchema);
