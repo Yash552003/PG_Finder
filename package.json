@@ -1,7 +1,7 @@
 {
-  "name": "pg-finder-v2",
+  "name": "FindmyPG",
   "version": "1.0.0",
-  "description": "A PG Finding application built using Node & Express JS.",
+  "description": "FindMyPG — A platform connecting students and property owners for PG listings",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -9,7 +9,7 @@
     "start": "node app.js"
   },
   "keywords": [],
-  "author": "Aryan Upadhyay",
+  "author": "yash",
   "license": "ISC",
   "dependencies": {
     "axios": "^1.4.0",
@@ -39,6 +39,7 @@
     "stripe": "^12.2.0"
   },
   "engines": {
-    "node": "16.16.0"
-  }
+  "node": ">=20.x"
+}
+
 }

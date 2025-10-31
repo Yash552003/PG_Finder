@@ -111,17 +111,20 @@ async function validatePropertyDetails (req, res, next) {
 		return res.status(406).send({error: true, errors});
 	}
 
-	
 
-	if (zipDetails.error)
-		return res.status(406).send({error: true, errors: [
-				{msg: 'Zip Details could not be verified!'}
-			]});
+	// Verify zip details using the zipcode service/helper
+	let zipDetails = null;
+	try {
+		zipDetails = await getZipcodeDetails(zipCode);
+	} catch (e) {
+		console.warn('Could not fetch zip details for', zipCode, e);
+	}
 
-	if (zipDetails.state !== state)
-		return res.status(406).send({error: true, errors: [
-				{msg: 'Zip details invalid!'}
-			]});
+	if (!zipDetails || zipDetails.error)
+		return res.status(406).send({error: true, errors: [ { msg: 'Zip Details could not be verified!' } ]});
+
+	if (zipDetails.state && zipDetails.state !== state)
+		return res.status(406).send({error: true, errors: [ { msg: 'Zip details invalid!' } ]});
 
 	next();
 }

@@ -108,7 +108,23 @@ router.post(
             req.session.userID = user._id ? user._id.toString() : user.username;
             req.session.username = user.username;
             req.session.userRole = user.role;
-            await req.session.save?.();
+
+            // Also set role-specific session values immediately so redirected
+            // requests and any XHR/fetch calls in the same browser session
+            // can rely on `req.session.userRoleID` and `req.session.userDet`.
+            if (user.role === 'provider') {
+                const prov = await providers.findOne({ email: user.username });
+                if (prov) {
+                    req.session.userRoleID = prov._id.toString();
+                    req.session.userDet = prov;
+                }
+            } else if (user.role === 'rider') {
+                const rid = await riders.findOne({ email: user.username });
+                if (rid) {
+                    req.session.userRoleID = rid._id.toString();
+                    req.session.userDet = rid;
+                }
+            }
 
             // Determine redirect
             let redirectTo = '/';
@@ -122,8 +138,14 @@ router.post(
                 redirectTo = '/provider/dashboard';
             }
 
-            console.log(`✅ Logged in as: ${user.username} | Role: ${user.role} | Redirecting to: ${redirectTo}`);
-            return res.redirect(redirectTo);
+            // Save session explicitly and redirect only after save completes to
+            // avoid a race where the browser makes the next request before
+            // session fields (userRoleID/userDet) are persisted.
+            req.session.save((err) => {
+                if (err) console.error('Session save error after login:', err);
+                console.log(`✅ Logged in as: ${user.username} | Role: ${user.role} | Redirecting to: ${redirectTo}`);
+                return res.redirect(redirectTo);
+            });
         } catch (e) {
             console.error('⚠️ Login error:', e);
             res.render('error', { code: 500, error: 'Internal server error during login.' });
