@@ -1,4 +1,4 @@
-# PG Finder v2
+# FindmyPG
 
 PG Finder is a web application that helps users find PGs and hostels in different states and cities. It provides a 
 user-friendly interface to search and book accommodations based on location, price, and amenities. Built using Node.js, 
@@ -6,7 +6,7 @@ Express JS and MongoDB, PG Finder is easy to deploy and customize.
 
 Live at : [pg-finder-dart.onrender.com](https://pg-finder-dart.onrender.com/)
 
-![Logo Finder Logo](https://github.com/aryan-upa/pg-finder-v2/blob/85b77a2356efa82f4f49fdf6c34e354a85f50b1c/public/images/logo-large.png)
+![Logo Finder Logo]([https://github.com/aryan-upa/pg-finder-v2/blob/85b77a2356efa82f4f49fdf6c34e354a85f50b1c/public/images/logo-large.png](https://github.com/Yash552003/PG_Finder/blob/ui-updates/public/images/party.png))
 
 ## Usage:
 
