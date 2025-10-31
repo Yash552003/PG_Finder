@@ -4,7 +4,6 @@ PG Finder is a web application that helps users find PGs and hostels in differen
 user-friendly interface to search and book accommodations based on location, price, and amenities. Built using Node.js, 
 Express JS and MongoDB, PG Finder is easy to deploy and customize.
 
-Live at : [pg-finder-dart.onrender.com](https://pg-finder-dart.onrender.com/)
 
 ![Logo Finder Logo](https://github.com/Yash552003/PG_Finder/blob/ui-updates/public/images/party.png?raw=true).
 
@@ -50,30 +49,13 @@ admin-creation mechanism in place. Admin rights are as below:
 To run the application on Local System, you need your node version to be 16.16.0 and above. <br>
 After installing node, clone the repository on your local system in a folder. Use following command:
 ```git
-git clone https://github.com/aryan-upa/pg-finder-v2.git
+git clone https://github.com/yash55/pg-finder-v2.git
 ```
-
-After this, go into the folder where you've cloned the repo to create a file called `secret.env`, for the required API 
-Keys follow guide [environment-variables](https://github.com/aryan-upa/pg-finder-v2/blob/b98747938cae97aab20475a8abad180d86c2fbec/Documents/environment-variables.md). Then open your fav shell and type:
 ```
 npm init
 npm start
 ```
 
 Congratulations 🎉, you've successfully started the service on your local system.
-
-## Contributing
-
-The project is open for contribution, follow the [contributing-guidelines](https://github.com/aryan-upa/pg-finder-v2/blob/b98747938cae97aab20475a8abad180d86c2fbec/CONTRIBUTING.md) to create meaningful contributions in the 
-project.
-
-## License
-
-MIT License - Copyright (c) 2023 Aryan Upadhyay & Priyanshi Mittal
-
-## Developers
-
-Frontend Development: [@priyanshi-mittal](https://github.com/priyanshi-mittal) <br>
-Backend Development: [@aryan-upa](https://github.com/aryan-upa)
 
 
