@@ -1,3 +1,17 @@
 /node_modules/
 project-notes.txt
 secret.env
+
+# Server
+PORT=3500
+SESSION_SECRET=yourSessionSecretKey
+NODE_ENV=development
+
+# Database (MongoDB Atlas or local)
+MONGO_URI=mongodb://127.0.0.1:27017/pgfinder
+
+# Cloudinary for image uploads
+CLOUD_NAME=dfnaozlo1
+CLOUDINARY_API_KEY=194228895852227
+CLOUDINARY_API_SECRET=lFOeS1SUVASEPOGo7OYHmAo9jok
+

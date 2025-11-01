@@ -20,6 +20,7 @@ app.use(methodOverride('_method'));
 app.set('view engine', "ejs");
 app.engine("ejs", engine);
 app.use(express.static(path.join(__dirname, 'public')));
+app.use('/uploads', express.static(path.join(__dirname, 'public/uploads')));
 
 
 
@@ -114,6 +115,8 @@ app.use('/contact', contactRouter);
 /* LISTENING TO PORT */
 app.listen (port, () => {
     console.log("Listening to port : " + port);
+    console.log("Database URL : " + databaseURL);
+    console.log("Site running at http://localhost:3500/auth/login");
 });
 
 /* CRON JOBS */
