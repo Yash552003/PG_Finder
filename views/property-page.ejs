@@ -9,11 +9,17 @@
         <div class="col-md-8 col-11 d-flex flex-column p-0 m-0 justify-content-between">
             <div class="d-flex flex-column p-0 m-0 col-11" style="flex: unset">
                 <h1 class="fw-light" style="font-size: clamp(3rem, 10vw, 5rem)"><%= property.name %></h1>
-                <h3 class="fw-normal"><%= property.address.addL1 %></h3>
+               <h3 class="fw-normal"><%= property.address ? property.address.addL1 || '' : '' %></h3>
                 <h3 class="fw-normal fst-italic text-muted"><%= property.tagline %></h3>
             </div>
             <div id="gallery" class="d-flex flex-row column-gap-2 col-11 p-0 justify-content-md-start justify-content-center" style="flex: unset">
-                <% for (let i=0; i < property.images.length; i ++) { %>
+               <% if (property.images && property.images.length) { %>
+  <% for (let i = 0; i < property.images.length; i++) { %>
+    <img src="<%= property.images[i] %>" alt="property image" />
+  <% } %>
+<% } else { %>
+  <img src="/images/no-image.png" alt="no image available" />
+<% } %>
                     <a href="<%= property.images[i] %>" style="width: 20%"><img class="card-img rounded-2 border-2 border-dark shadow-lg" src="<%= property.images[i] %>" alt="property-image" style="object-fit: cover; max-width: 100%; aspect-ratio: 1;"></a>
                 <% } %>
             </div>
@@ -27,8 +33,8 @@
         <% if (user) { %>
             <% if (user.role === 'rider') { %>
                 <button id='like-button' class="btn btn-lg" onclick="toggleLike()">
-                    <i class="<%= userDet.likes.includes(property.id) ? 'fa-solid' : 'fa-regular' %> fa-heart"
-                       style="color: red"></i>
+                   <i class="<%= (userDet && Array.isArray(userDet.likes) && userDet.likes.includes(property.id)) ? 'fa-solid' : 'fa-regular' %> fa-heart"></i>
+
                 </button>
             <% } else if (user.role === 'provider' && userDet.id === property.owner.id) { %>
                 <a href="" role="button" class="btn btn-outline-secondary btn-lg">Edit Property</a>
@@ -334,7 +340,8 @@
     }
 
     const ratingSection = document.getElementById('rating-stars');
-    ratingSection.innerHTML = getStars(<%= property.rating %>);
+    const ratingValue = <%- (typeof property.rating !== 'undefined' && property.rating !== null) ? property.rating : 0 %>;
+    ratingSection.innerHTML = getStars(ratingValue);
 
 	// REVIEW FORM SUBMISSION FUNCTION
     const reviewForm = document.getElementById('review-form');

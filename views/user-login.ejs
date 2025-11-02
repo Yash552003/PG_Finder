@@ -1,12 +1,47 @@
 <!-- USER LOGIN -->
 <% layout('layout/boilerplate.ejs') -%>
 
+<!-- video background wrapper -->
 <style>
-    #section-holder {
-        background: url("/images/city.svg") no-repeat center center fixed;
-        background-size: cover;
-    }
+  #video-bg {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -1;
+    overflow: hidden;
+    object-fit: cover;
+    filter: brightness(0.6) saturate(0.95);
+  }
+  /* overlay to darken video so text is readable */
+  .video-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.45);
+    z-index: 0;
+  }
+  /* keep your existing content above overlay */
+  #section-holder .content-wrapper {
+    position: relative;
+    z-index: 1;
+  }
 </style>
+
+<!-- add video element (place this right inside body or inside #section-holder) -->
+<video id="video-bg" autoplay loop muted playsinline>
+  <source src="/videos/login-bg.mp4" type="video/mp4">
+  <!-- fallback static image -->
+  <img src="/images/city.svg" alt="background image">
+</video>
+<div class="video-overlay"></div>
+
+<section id="section-holder" style="min-height: 100vh;" class="d-grid row-gap-2">
+  <div class="content-wrapper">
+    <!-- existing content (forms etc.) continues here -->
+
 
 <section id="section-holder" style="min-height: 100vh;" class="d-grid row-gap-2">
     <div class="d-flex col-11 col-md-6 mx-auto my-auto text-center" style="background-color: rgba(0,0,0,0.8);">

@@ -114,6 +114,8 @@ app.use('/contact', contactRouter);
 /* LISTENING TO PORT */
 app.listen (port, () => {
     console.log("Listening to port : " + port);
+    console.log("Database URL : " + databaseURL);
+    console.log("site running at http://localhost:" + port);
 });
 
 /* CRON JOBS */

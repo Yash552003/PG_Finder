@@ -1,0 +1,98 @@
+{
+  "110001": {
+    "city": "New Delhi",
+    "state": "Delhi",
+    "latitude": 28.632,
+    "longitude": 77.219
+  },
+  "400001": {
+    "city": "Mumbai",
+    "state": "Maharashtra",
+    "latitude": 18.9388,
+    "longitude": 72.8355
+  },
+"560001": {
+    "city": "Bengaluru",
+    "state": "Karnataka",
+    "latitude": 12.9716,
+    "longitude": 77.5946
+},
+"411001": {
+    "city": "Pune",
+    "state": "Maharashtra",
+    "latitude": 18.5196,
+    "longitude": 73.8553
+},
+"421301": {
+    "city": "Kalyan",
+    "state": "Maharashtra",
+    "latitude": 19.2437,
+    "longitude": 73.1355
+},
+"422001": {
+    "city": "Nashik",
+    "state": "Maharashtra",
+    "latitude": 19.9975,
+    "longitude": 73.7898
+},
+"440001": {
+    "city": "Nagpur",
+    "state": "Maharashtra",
+    "latitude": 21.1458,
+    "longitude": 79.0882
+},
+"431001": {
+    "city": "Aurangabad",
+    "state": "Maharashtra",
+    "latitude": 19.8762,
+    "longitude": 75.3433
+},
+"410201": {
+    "city": "Karjat",
+    "state": "Maharashtra",
+    "latitude": 18.9106,
+    "longitude": 73.3234
+},
+"402201": {
+    "city": "Karjat",
+    "state": "Maharashtra",
+    "latitude": 18.9106,
+    "longitude": 73.3234
+},
+"402301": {
+    "city": "Alibag",
+    "state": "Maharashtra",
+    "latitude": 18.6414,
+    "longitude": 72.8722
+},
+"402203": {
+    "city": "Panvel",
+    "state": "Maharashtra",
+    "latitude": 18.9884,
+    "longitude": 73.1105
+},
+"402104": {
+    "city": "Roha",
+    "state": "Maharashtra",
+    "latitude": 18.4333,
+    "longitude": 73.1196
+},
+"402208": {
+    "city": "Pen",
+    "state": "Maharashtra",
+    "latitude": 18.8333,
+    "longitude": 73.0833
+},
+"415612": {
+    "city": "Ratnagiri",
+    "state": "Maharashtra",
+    "latitude": 16.9902,
+    "longitude": 73.3002
+},
+"416602": {
+    "city": "Sindhudurg",
+    "state": "Maharashtra",
+    "latitude": 16.2160,
+    "longitude": 73.4830
+}
+}
